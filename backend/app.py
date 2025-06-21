@@ -325,7 +325,85 @@ def calculate_schedule():
 
     return jsonify(
         {
-            "regimen": regimen["name"],
+            "regimen": regimen,
+            "regimen_name": regimen["name"],
+            "start_date": start_date_str,
+            "total_cycles": total_cycles,
+            "events": sorted(events, key=lambda x: x["date"]),
+        }
+    )
+
+
+@app.route("/api/calculate-schedule-custom", methods=["POST"])
+def calculate_schedule_custom():
+    """Calculate treatment schedule based on custom edited regimen data"""
+    data = request.json
+    regimen_data = data.get("regimen_data")
+    start_date_str = data.get("start_date")
+    custom_cycles = data.get("total_cycles")
+
+    if not regimen_data or not start_date_str:
+        return jsonify({"error": "Missing required parameters"}), 400
+
+    try:
+        start_date = datetime.strptime(start_date_str, "%Y-%m-%d")
+    except ValueError:
+        return jsonify({"error": "Invalid date format"}), 400
+
+    # Validate custom cycles if provided
+    if custom_cycles is not None:
+        try:
+            custom_cycles = int(custom_cycles)
+            if custom_cycles < 1 or custom_cycles > 100:
+                return jsonify({"error": "Cycle count must be between 1 and 100"}), 400
+        except (ValueError, TypeError):
+            return jsonify({"error": "Invalid cycle count"}), 400
+
+    events = []
+    
+    # Use custom cycles if provided, otherwise use regimen default
+    total_cycles = (
+        custom_cycles if custom_cycles is not None else regimen_data.get("total_cycles", 1)
+    )
+    
+    # Update the regimen data with the actual total cycles used
+    regimen_data["total_cycles"] = total_cycles
+
+    # Handle cycle-based regimens
+    for cycle in range(total_cycles):
+        cycle_start = start_date + timedelta(days=cycle * regimen_data["cycle_days"])
+
+        for schedule_item in regimen_data["schedule"]:
+            # Check if this item should occur in this cycle
+            should_include = False
+            if "cycles" not in schedule_item:
+                # No cycles specified, include in all cycles
+                should_include = True
+            elif schedule_item["cycles"] == "all":
+                # Explicitly include in all cycles
+                should_include = True
+            elif isinstance(schedule_item["cycles"], list):
+                # Include only if current cycle is in the list (1-based)
+                should_include = (cycle + 1) in schedule_item["cycles"]
+
+            if should_include:
+                event_date = cycle_start + timedelta(days=schedule_item["day"] - 1)
+                event = {
+                    "date": event_date.strftime("%Y-%m-%d"),
+                    "title": schedule_item["description"],
+                    "description": f"Cycle {cycle + 1}, Day {schedule_item['day']}",
+                    "drug_name": schedule_item["description"],
+                }
+                # Add type if specified
+                if "type" in schedule_item:
+                    event["type"] = schedule_item["type"]
+                    if schedule_item["type"] == "rest":
+                        event["title"] = "Rest Day"
+                events.append(event)
+
+    return jsonify(
+        {
+            "regimen": regimen_data,
             "start_date": start_date_str,
             "total_cycles": total_cycles,
             "events": sorted(events, key=lambda x: x["date"]),
@@ -345,6 +423,7 @@ def index():
                 "GET /api/regimens": "List all drug regimens",
                 "GET /api/regimen/<id>": "Get specific regimen details",
                 "POST /api/calculate-schedule": "Calculate treatment schedule",
+                "POST /api/calculate-schedule-custom": "Calculate schedule with custom regimen",
             },
         }
     )
