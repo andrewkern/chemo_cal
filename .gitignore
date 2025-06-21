@@ -22,3 +22,5 @@ Thumbs.db
 # Project specific
 *.log
 .env
+CLAUDE.local.md
+claude.md 

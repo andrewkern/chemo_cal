@@ -203,20 +203,47 @@ header p {
 @media print {
     body {
         background-color: white;
+        margin: 0;
+        padding: 0;
     }
     
-    .controls {
-        display: none;
+    /* Hide everything except the calendar */
+    header,
+    .controls,
+    .regimen-details {
+        display: none !important;
     }
     
     .container {
         max-width: 100%;
         padding: 0;
+        margin: 0;
     }
     
     .calendar-container {
         box-shadow: none;
-        padding: 0;
+        padding: 10px;
+        margin: 0;
+        background: white;
+    }
+    
+    /* Hide calendar navigation buttons for cleaner print */
+    .fc-header-toolbar .fc-button-group {
+        display: none !important;
+    }
+    
+    /* Keep only the title in the header */
+    .fc-header-toolbar {
+        margin-bottom: 10px !important;
+    }
+    
+    /* Make the calendar title more prominent */
+    .fc-toolbar-title {
+        font-size: 20px !important;
+        font-weight: bold !important;
+        text-align: center !important;
+        width: 100% !important;
+        display: block !important;
     }
     
     /* Enable exact color printing */
@@ -285,6 +312,35 @@ header p {
     .fc-event {
         opacity: 1 !important;
         visibility: visible !important;
+    }
+    
+    /* Optimize list view for printing */
+    .fc-list {
+        border: none !important;
+    }
+    
+    .fc-list-table {
+        font-size: 12px !important;
+    }
+    
+    .fc-list-heading {
+        background-color: #f0f0f0 !important;
+        font-weight: bold !important;
+        page-break-after: avoid !important;
+    }
+    
+    .fc-list-item {
+        page-break-inside: avoid !important;
+    }
+    
+    /* Remove any extra margins/padding */
+    .fc {
+        margin: 0 !important;
+    }
+    
+    /* Ensure proper page breaks */
+    .fc-daygrid-body {
+        page-break-inside: avoid !important;
     }
 }
 

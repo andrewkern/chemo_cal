@@ -20,7 +20,21 @@ function initializeCalendar() {
         headerToolbar: {
             left: 'prev,next today',
             center: 'title',
-            right: 'dayGridMonth,listMonth'
+            right: 'dayGridMonth,listMonth,list3Month,listYear'
+        },
+        views: {
+            listMonth: {
+                buttonText: '1 Month List'
+            },
+            list3Month: {
+                type: 'list',
+                buttonText: '3 Months',
+                duration: { months: 3 }
+            },
+            listYear: {
+                buttonText: 'All Treatments',
+                duration: { months: 12 }
+            }
         },
         events: [],
         eventClick: function(info) {
@@ -214,6 +228,13 @@ async function generateSchedule() {
         
         // Show print button
         document.getElementById('print-btn').style.display = 'inline-block';
+        
+        // Add print header info for better printed output
+        const calendarContainer = document.querySelector('.calendar-container');
+        const regimenSelect = document.getElementById('regimen-select');
+        const selectedRegimen = regimenSelect.options[regimenSelect.selectedIndex].text;
+        calendarContainer.setAttribute('data-print-header', 
+            `Treatment Schedule: ${selectedRegimen} - Starting ${startDate}`);
         
     } catch (error) {
         console.error('Error generating schedule:', error);
