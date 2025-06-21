@@ -1,0 +1,18 @@
+{
+  "AmiCarboPem (Amivantimab, Carboplatin, Pemetrexed)": {
+    "name": "AmiCarboPem Regimen",
+    "description": "Amivantimab, Carboplatin, Pemetrexed",
+    "schedule": [
+      { "day": 1, "description": "Amivantimab", "cycles": [1, 2, 3, 4, 5, 6] },
+      { "day": 8, "description": "Amivantimab", "cycles": [1] },
+      { "day": 15, "description": "Amivantimab", "cycles": [1] },
+      { "day": 1, "description": "Carboplatin", "cycles": [1, 2, 3, 4] },
+      { "day": 1, "description": "Pemetrexed", "cycles": [1, 2, 3, 4, 5, 6] },
+      { "day": 1, "description": "Dexamethasone", "cycles": [1, 2, 3, 4, 5, 6] },
+      { "day": 2, "description": "Dexamethasone", "cycles": [1, 2, 3, 4, 5, 6] },
+      { "day": 21, "description": "Dexamethasone", "cycles": [1, 2, 3, 4, 5, 6] }
+    ],
+    "cycle_days": 21,
+    "total_cycles": 6
+  }
+}

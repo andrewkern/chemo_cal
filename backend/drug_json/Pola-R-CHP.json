@@ -1,0 +1,19 @@
+{
+  "Pola-R-CHP (Polatuzumab, Rituximab, Cyclophosphamide, Doxorubicin, Prednisone)": {
+    "name": "Pola-R-CHP Regimen",
+    "description": "Polatuzumab, Rituximab, Cyclophosphamide, Doxorubicin, Prednisone",
+    "schedule": [
+      { "day": 1, "description": "Polatuzumab", "cycles": [1, 2, 3, 4, 5, 6] },
+      { "day": 1, "description": "Prednisone", "cycles": [1, 2, 3, 4, 5, 6] },
+      { "day": 2, "description": "Prednisone", "cycles": [1, 2, 3, 4, 5, 6] },
+      { "day": 3, "description": "Prednisone", "cycles": [1, 2, 3, 4, 5, 6] },
+      { "day": 4, "description": "Prednisone", "cycles": [1, 2, 3, 4, 5, 6] },
+      { "day": 5, "description": "Prednisone", "cycles": [1, 2, 3, 4, 5, 6] },
+      { "day": 1, "description": "Cyclophosohamide", "cycles": [1, 2, 3, 4, 5, 6] },
+      { "day": 1, "description": "Doxorubicin", "cycles": [1, 2, 3, 4, 5, 6] },
+      { "day": 1, "description": "Rituximab", "cycles": [1, 2, 3, 4, 5, 6, 7, 8] }
+    ],
+    "cycle_days": 21,
+    "total_cycles": 8
+  }
+}

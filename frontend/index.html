@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drug Regimen Calendar</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Drug Regimen Calendar</h1>
+            <p>Select your treatment plan and visualize your schedule</p>
+        </header>
+
+        <div class="controls">
+            <div class="form-group">
+                <label for="regimen-select">Select Treatment Regimen:</label>
+                <select id="regimen-select">
+                    <option value="">-- Choose a regimen --</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="start-date">Start Date:</label>
+                <input type="date" id="start-date" min="">
+            </div>
+
+            <div class="form-group">
+                <label for="cycle-count">Number of Cycles (optional):</label>
+                <input type="number" id="cycle-count" min="1" max="100" placeholder="Use default">
+                <small class="form-help">Leave blank to use the default cycle count</small>
+            </div>
+
+            <button id="generate-btn" class="btn btn-primary">Generate Schedule</button>
+            <button id="print-btn" class="btn btn-secondary" style="display: none;">Print Calendar</button>
+        </div>
+
+        <div id="regimen-details" class="regimen-details" style="display: none;"></div>
+
+        <div id="calendar" class="calendar-container"></div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
