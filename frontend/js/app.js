@@ -20,6 +20,8 @@ function initializeCalendar() {
     const calendarEl = document.getElementById('calendar');
     calendar = new FullCalendar.Calendar(calendarEl, {
         initialView: 'dayGridMonth',
+        fixedWeekCount: false,
+        dayMaxEvents: false, // Show all events, no "+more" link
         headerToolbar: {
             left: 'prev,next today',
             center: 'title',

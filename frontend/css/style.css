@@ -226,6 +226,11 @@ header p {
 
 /* Print styles */
 @media print {
+    @page {
+        size: landscape;
+        margin: 0.2in;
+    }
+    
     body {
         background-color: white;
         margin: 0;
@@ -246,10 +251,18 @@ header p {
     }
     
     .calendar-container {
-        box-shadow: none;
-        padding: 10px;
-        margin: 0;
-        background: white;
+        width: 100% !important;
+        height: auto !important;
+        min-height: 0 !important;
+        box-sizing: border-box !important;
+        overflow: visible !important;
+        padding: 0 !important;
+    }
+    
+    .fc, .fc-view-harness, .fc-scrollgrid, .fc-scrollgrid-sync-table, .fc-daygrid, .fc-daygrid-body, .fc-daygrid-table {
+        width: 100% !important;
+        min-width: 0 !important;
+        box-sizing: border-box !important;
     }
     
     /* Hide calendar navigation buttons for cleaner print */
@@ -275,7 +288,6 @@ header p {
     * {
         -webkit-print-color-adjust: exact !important;
         print-color-adjust: exact !important;
-        color-adjust: exact !important;
     }
     
     /* Medication events with transparency */
@@ -366,6 +378,22 @@ header p {
     /* Ensure proper page breaks */
     .fc-daygrid-body {
         page-break-inside: avoid !important;
+    }
+    
+    /* Make sure events are visible in print */
+    .fc-event,
+    .fc-daygrid-event {
+        visibility: visible !important;
+        opacity: 1 !important;
+        display: block !important;
+    }
+    
+    /* Ensure event containers are visible */
+    .fc-daygrid-day-events,
+    .fc-daygrid-event-harness,
+    .fc-daygrid-event-harness-abs {
+        visibility: visible !important;
+        opacity: 1 !important;
     }
 }
 
@@ -527,5 +555,178 @@ header p {
     
     .btn {
         width: 100%;
+    }
+}
+
+/* Print styles */
+@media print {
+    @page {
+        size: landscape;
+        margin: 0.2in;
+    }
+    
+    body {
+        background-color: white;
+        margin: 0;
+        padding: 0;
+    }
+    
+    /* Hide everything except the calendar */
+    header,
+    .controls,
+    .regimen-details {
+        display: none !important;
+    }
+    
+    .container {
+        max-width: 100%;
+        padding: 0;
+        margin: 0;
+    }
+    
+    .calendar-container {
+        width: 100% !important;
+        height: auto !important;
+        min-height: 0 !important;
+        box-sizing: border-box !important;
+        overflow: visible !important;
+        padding: 0 !important;
+    }
+    
+    .fc, .fc-view-harness, .fc-scrollgrid, .fc-scrollgrid-sync-table, .fc-daygrid, .fc-daygrid-body, .fc-daygrid-table {
+        width: 100% !important;
+        min-width: 0 !important;
+        box-sizing: border-box !important;
+    }
+    
+    /* Hide calendar navigation buttons for cleaner print */
+    .fc-header-toolbar .fc-button-group {
+        display: none !important;
+    }
+    
+    /* Keep only the title in the header */
+    .fc-header-toolbar {
+        margin-bottom: 10px !important;
+    }
+    
+    /* Make the calendar title more prominent */
+    .fc-toolbar-title {
+        font-size: 20px !important;
+        font-weight: bold !important;
+        text-align: center !important;
+        width: 100% !important;
+        display: block !important;
+    }
+    
+    /* Enable exact color printing */
+    * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+    
+    /* Medication events with transparency */
+    .medication-event {
+        background-color: rgba(232, 245, 233, 0.3) !important;
+        border-color: rgba(76, 175, 80, 0.3) !important;
+        color: #000000 !important;
+    }
+    
+    /* Rest events with transparency */
+    .rest-event {
+        background-color: rgba(200, 230, 201, 0.3) !important;
+        border-color: rgba(102, 187, 106, 0.3) !important;
+        color: #000000 !important;
+    }
+    
+    /* Drug color classes with 30% opacity - matching our colorblind-safe palette */
+    .drug-color-0 { /* Light blue */
+        background-color: rgba(136, 204, 238, 0.3) !important;
+        border-color: rgba(76, 153, 199, 0.3) !important;
+    }
+    .drug-color-1 { /* Rose */
+        background-color: rgba(204, 102, 119, 0.3) !important;
+        border-color: rgba(169, 68, 80, 0.3) !important;
+    }
+    .drug-color-2 { /* Sand */
+        background-color: rgba(221, 204, 119, 0.3) !important;
+        border-color: rgba(182, 165, 80, 0.3) !important;
+    }
+    .drug-color-3 { /* Green */
+        background-color: rgba(17, 119, 51, 0.3) !important;
+        border-color: rgba(10, 77, 34, 0.3) !important;
+    }
+    .drug-color-4 { /* Wine */
+        background-color: rgba(136, 34, 85, 0.3) !important;
+        border-color: rgba(91, 22, 56, 0.3) !important;
+    }
+    .drug-color-5 { /* Teal */
+        background-color: rgba(68, 170, 153, 0.3) !important;
+        border-color: rgba(45, 115, 104, 0.3) !important;
+    }
+    .drug-color-6 { /* Olive */
+        background-color: rgba(153, 153, 51, 0.3) !important;
+        border-color: rgba(102, 102, 34, 0.3) !important;
+    }
+    .drug-color-7 { /* Purple */
+        background-color: rgba(170, 68, 153, 0.3) !important;
+        border-color: rgba(115, 45, 104, 0.3) !important;
+    }
+    
+    /* Ensure text remains readable */
+    .fc-event-title,
+    .fc-event-time {
+        color: #000000 !important;
+        font-weight: 700 !important;
+    }
+    
+    /* Ensure drug events are visible in print */
+    .fc-event {
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+    
+    /* Optimize list view for printing */
+    .fc-list {
+        border: none !important;
+    }
+    
+    .fc-list-table {
+        font-size: 12px !important;
+    }
+    
+    .fc-list-heading {
+        background-color: #f0f0f0 !important;
+        font-weight: bold !important;
+        page-break-after: avoid !important;
+    }
+    
+    .fc-list-item {
+        page-break-inside: avoid !important;
+    }
+    
+    /* Remove any extra margins/padding */
+    .fc {
+        margin: 0 !important;
+    }
+    
+    /* Ensure proper page breaks */
+    .fc-daygrid-body {
+        page-break-inside: avoid !important;
+    }
+    
+    /* Make sure events are visible in print */
+    .fc-event,
+    .fc-daygrid-event {
+        visibility: visible !important;
+        opacity: 1 !important;
+        display: block !important;
+    }
+    
+    /* Ensure event containers are visible */
+    .fc-daygrid-day-events,
+    .fc-daygrid-event-harness,
+    .fc-daygrid-event-harness-abs {
+        visibility: visible !important;
+        opacity: 1 !important;
     }
 }
