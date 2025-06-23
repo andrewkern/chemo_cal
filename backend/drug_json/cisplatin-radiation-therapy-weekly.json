@@ -1,0 +1,88 @@
+{
+    "Cisplatin + Radiation Therapy (Weekly Dosing)": {
+        "name": "Cisplatin + RT (Weekly)",
+        "description": "Cisplatin given once weekly on Day 1 of each 7-day cycle with concurrent daily radiation therapy (M\u2013F) for 7 total cycles",
+        "schedule": [
+            {
+                "day": 1,
+                "description": "Cisplatin (40 mg/m\u00b2)",
+                "cycles": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7
+                ]
+            },
+            {
+                "day": 1,
+                "description": "Radiation Therapy (M\u2013F)",
+                "cycles": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7
+                ]
+            },
+            {
+                "day": 2,
+                "description": "Radiation Therapy (M\u2013F)",
+                "cycles": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7
+                ]
+            },
+            {
+                "day": 3,
+                "description": "Radiation Therapy (M\u2013F)",
+                "cycles": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7
+                ]
+            },
+            {
+                "day": 4,
+                "description": "Radiation Therapy (M\u2013F)",
+                "cycles": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7
+                ]
+            },
+            {
+                "day": 5,
+                "description": "Radiation Therapy (M\u2013F)",
+                "cycles": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7
+                ]
+            }
+        ],
+        "cycle_days": 7,
+        "total_cycles": 7
+    }
+}

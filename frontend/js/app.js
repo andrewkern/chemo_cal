@@ -1,5 +1,4 @@
 // Configuration
-const API_BASE_URL = 'http://localhost:3000/api';
 let calendar;
 let currentEvents = [];
 let drugColorMap = {};
@@ -72,8 +71,10 @@ function initializeCalendar() {
 // Load available regimens from API
 async function loadRegimens() {
     try {
-        const response = await fetch(`${API_BASE_URL}/regimens`);
-        const regimens = await response.json();
+        // Wait for additional regimens to load from JSON files
+        await loadAdditionalRegimens();
+        
+        const regimens = getRegimens();
         
         const select = document.getElementById('regimen-select');
         regimens.forEach(regimen => {
@@ -84,7 +85,7 @@ async function loadRegimens() {
         });
     } catch (error) {
         console.error('Error loading regimens:', error);
-        alert('Error loading regimens. Make sure the backend server is running.');
+        alert('Error loading regimens: ' + error.message);
     }
 }
 
@@ -105,6 +106,12 @@ function setupEventListeners() {
     document.getElementById('cancel-edits').addEventListener('click', cancelEdits);
     document.getElementById('add-treatment-btn').addEventListener('click', addCustomTreatment);
     
+    // Toggle advanced options
+    document.getElementById('show-advanced-options').addEventListener('change', function(e) {
+        const advancedOptions = document.getElementById('advanced-options');
+        advancedOptions.style.display = e.target.checked ? 'block' : 'none';
+    });
+    
     // Allow Enter key to add treatment
     document.getElementById('new-treatment-name').addEventListener('keypress', function(e) {
         if (e.key === 'Enter') {
@@ -124,8 +131,7 @@ async function showRegimenDetails() {
     }
     
     try {
-        const response = await fetch(`${API_BASE_URL}/regimen/${regimenId}`);
-        const regimen = await response.json();
+        const regimen = getRegimenDetails(regimenId);
         
         let detailsHTML = `<h3>${regimen.name}</h3><p>${regimen.description}</p>`;
         
@@ -133,14 +139,37 @@ async function showRegimenDetails() {
             detailsHTML += `<p><strong>Schedule:</strong> Monday-Friday for ${regimen.total_days} sessions</p>`;
         } else {
             detailsHTML += `<p><strong>Cycle length:</strong> ${regimen.cycle_days} days</p>`;
-            detailsHTML += `<p><strong>Default cycles:</strong> ${regimen.total_cycles} (you can customize this below)</p>`;
+            detailsHTML += `<p><strong>Default cycles:</strong> ${regimen.total_cycles}</p>`;
+            
+            // Check if any drugs have cycle restrictions
+            if (regimen.schedule && Array.isArray(regimen.schedule)) {
+                const drugsWithCycles = regimen.schedule.filter(item => 
+                    item.cycles && item.cycles !== 'all' && Array.isArray(item.cycles)
+                );
+                
+                if (drugsWithCycles.length > 0) {
+                    detailsHTML += `<p><strong>Note:</strong> Some medications are only given in specific cycles:</p><ul>`;
+                    const drugCycleMap = {};
+                    drugsWithCycles.forEach(item => {
+                        const cycleRange = `cycles ${Math.min(...item.cycles)}-${Math.max(...item.cycles)}`;
+                        if (!drugCycleMap[item.description]) {
+                            drugCycleMap[item.description] = cycleRange;
+                        }
+                    });
+                    Object.entries(drugCycleMap).forEach(([drug, cycles]) => {
+                        detailsHTML += `<li>${drug}: ${cycles}</li>`;
+                    });
+                    detailsHTML += `</ul>`;
+                }
+            }
+            
             if (regimen.daily_medication) {
                 detailsHTML += `<p><strong>Note:</strong> Includes daily medication</p>`;
             }
         }
         
         // Update cycle count placeholder with default
-        document.getElementById('cycle-count').placeholder = `Default: ${regimen.total_cycles} cycles`;
+        document.getElementById('cycle-count').placeholder = regimen.total_cycles.toString();
         
         detailsDiv.innerHTML = detailsHTML;
         detailsDiv.style.display = 'block';
@@ -185,6 +214,7 @@ async function generateSchedule() {
     const regimenId = document.getElementById('regimen-select').value;
     const startDate = document.getElementById('start-date').value;
     const cycleCountInput = document.getElementById('cycle-count').value;
+    const startingCycleInput = document.getElementById('starting-cycle').value;
     
     if (!regimenId || !startDate) {
         alert('Please select a regimen and start date');
@@ -207,20 +237,20 @@ async function generateSchedule() {
         requestBody.total_cycles = cycleCount;
     }
     
-    try {
-        const response = await fetch(`${API_BASE_URL}/calculate-schedule`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(requestBody)
-        });
-        
-        const data = await response.json();
-        
-        if (!response.ok) {
-            throw new Error(data.error || 'Failed to generate schedule');
+    // Add starting cycle if provided and not 1
+    if (startingCycleInput && startingCycleInput.trim() !== '') {
+        const startingCycle = parseInt(startingCycleInput);
+        if (isNaN(startingCycle) || startingCycle < 1 || startingCycle > 101) {
+            alert('Please enter a valid starting cycle between 1 and 101');
+            return;
         }
+        if (startingCycle > 1) {
+            requestBody.starting_cycle = startingCycle;
+        }
+    }
+    
+    try {
+        const data = calculateSchedule(requestBody);
         
         // Clear existing events
         calendar.removeAllEvents();
@@ -237,12 +267,18 @@ async function generateSchedule() {
             drug_name: event.drug_name
         }));
         
+        // Check if no events were generated
+        if (currentEvents.length === 0) {
+            alert('No treatments are scheduled for the selected cycles. This can happen if your starting cycle is beyond the treatment plan. Please check your cycle settings.');
+            // Still show the calendar but it will be empty
+        }
+        
         calendar.addEventSource(currentEvents);
         
         // Go to the start date
         calendar.gotoDate(startDate);
         
-        // Show print and edit buttons
+        // Show print and edit buttons even if no events
         document.getElementById('print-btn').style.display = 'inline-block';
         document.getElementById('edit-btn').style.display = 'inline-block';
         
@@ -258,7 +294,7 @@ async function generateSchedule() {
         
     } catch (error) {
         console.error('Error generating schedule:', error);
-        alert('Error generating schedule. Make sure the backend server is running.');
+        alert('Error generating schedule: ' + error.message);
     }
 }
 
@@ -373,6 +409,7 @@ function buildEditGrid(regimenData) {
     const schedule = regimen.schedule;
     const totalCycles = regimenData.total_cycles || regimen.total_cycles;
     const cycleDays = regimen.cycle_days;
+    const startingCycle = parseInt(document.getElementById('starting-cycle').value) || 1;
     
     // Get unique drugs and days
     const drugs = [...new Set(schedule.map(item => item.description))].sort();
@@ -388,14 +425,15 @@ function buildEditGrid(regimenData) {
     
     let html = '<table><thead><tr><th>Drug</th>';
     
-    // Create cycle headers
-    for (let cycle = 1; cycle <= totalCycles; cycle++) {
-        html += `<th colspan="${cycleDays}" class="cycle-header">Cycle ${cycle}</th>`;
+    // Create cycle headers with adjusted numbers
+    for (let cycle = 0; cycle < totalCycles; cycle++) {
+        const actualCycle = startingCycle + cycle;
+        html += `<th colspan="${cycleDays}" class="cycle-header">Cycle ${actualCycle}</th>`;
     }
     html += '</tr><tr><th></th>';
     
     // Create day headers for each cycle
-    for (let cycle = 1; cycle <= totalCycles; cycle++) {
+    for (let cycle = 0; cycle < totalCycles; cycle++) {
         for (let day = 1; day <= cycleDays; day++) {
             const isFirstDayOfCycle = day === 1;
             const headerClass = `day-header${isFirstDayOfCycle ? ' cycle-separator' : ''}`;
@@ -410,14 +448,26 @@ function buildEditGrid(regimenData) {
         const rowClass = isCustom ? 'custom-treatment' : '';
         html += `<tr class="${rowClass}"><td>${drug}</td>`;
         
-        for (let cycle = 1; cycle <= totalCycles; cycle++) {
+        for (let cycle = 0; cycle < totalCycles; cycle++) {
+            const actualCycle = startingCycle + cycle;
             for (let day = 1; day <= cycleDays; day++) {
-                // Check if this drug is scheduled on this day in this cycle
-                const isScheduled = schedule.some(item => 
-                    item.description === drug && 
-                    item.day === day && 
-                    item.cycles.includes(cycle)
-                );
+                // Check if this drug is scheduled on this day in this actual cycle
+                const isScheduled = schedule.some(item => {
+                    if (item.description !== drug || item.day !== day) return false;
+                    
+                    // If no cycles specified, include in all cycles
+                    if (!item.cycles) return true;
+                    
+                    // If cycles is "all", include in all cycles
+                    if (item.cycles === "all") return true;
+                    
+                    // If cycles is an array, check if actualCycle is included
+                    if (Array.isArray(item.cycles)) {
+                        return item.cycles.includes(actualCycle);
+                    }
+                    
+                    return false;
+                });
                 
                 const checkboxId = `checkbox-${drug}-${cycle}-${day}`;
                 const isFirstDayOfCycle = day === 1;
@@ -428,6 +478,7 @@ function buildEditGrid(regimenData) {
                            data-drug="${drug}" 
                            data-cycle="${cycle}" 
                            data-day="${day}"
+                           data-actual-cycle="${actualCycle}"
                            ${isScheduled ? 'checked' : ''}>
                 </td>`;
             }
@@ -453,7 +504,7 @@ async function applyEdits() {
     checkboxes.forEach(checkbox => {
         if (checkbox.checked) {
             const drug = checkbox.dataset.drug;
-            const cycle = parseInt(checkbox.dataset.cycle);
+            const actualCycle = parseInt(checkbox.dataset.actualCycle);
             const day = parseInt(checkbox.dataset.day);
             
             const key = `${drug}-${day}`;
@@ -464,7 +515,7 @@ async function applyEdits() {
                     cycles: []
                 };
             }
-            drugDayCycleMap[key].cycles.push(cycle);
+            drugDayCycleMap[key].cycles.push(actualCycle);
         }
     });
     
@@ -502,6 +553,7 @@ function cancelEdits() {
 async function regenerateCalendarWithEditedData() {
     const startDate = document.getElementById('start-date').value;
     const cycleCountInput = document.getElementById('cycle-count').value;
+    const startingCycleInput = document.getElementById('starting-cycle').value;
     
     // Prepare request body with edited regimen
     const requestBody = {
@@ -515,20 +567,16 @@ async function regenerateCalendarWithEditedData() {
         requestBody.total_cycles = cycleCount;
     }
     
-    try {
-        const response = await fetch(`${API_BASE_URL}/calculate-schedule-custom`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(requestBody)
-        });
-        
-        const data = await response.json();
-        
-        if (!response.ok) {
-            throw new Error(data.error || 'Failed to generate schedule');
+    // Add starting cycle if provided and not 1
+    if (startingCycleInput && startingCycleInput.trim() !== '') {
+        const startingCycle = parseInt(startingCycleInput);
+        if (startingCycle > 1) {
+            requestBody.starting_cycle = startingCycle;
         }
+    }
+    
+    try {
+        const data = calculateScheduleCustom(requestBody);
         
         // Clear existing events
         calendar.removeAllEvents();

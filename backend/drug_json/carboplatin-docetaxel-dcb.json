@@ -1,0 +1,82 @@
+{
+    "Carboplatin + Docetaxel (DCb)": {
+        "name": "Carboplatin + Docetaxel (DCb) Regimen",
+        "description": "Carboplatin and Docetaxel administered on Day 1 of a 21-day cycle with supportive care premedications",
+        "schedule": [
+            {
+                "day": 1,
+                "description": "Dexamethasone (8 mg PO BID, start 1 day before docetaxel)",
+                "cycles": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6
+                ]
+            },
+            {
+                "day": 0,
+                "description": "Dexamethasone (8 mg PO BID)",
+                "cycles": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6
+                ]
+            },
+            {
+                "day": 2,
+                "description": "Dexamethasone (8 mg PO BID)",
+                "cycles": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6
+                ]
+            },
+            {
+                "day": 1,
+                "description": "Carboplatin (AUC 5\u20136)",
+                "cycles": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6
+                ]
+            },
+            {
+                "day": 1,
+                "description": "Docetaxel (60\u201375 mg/m\u00b2)",
+                "cycles": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6
+                ]
+            },
+            {
+                "day": 1,
+                "description": "Antiemetics (e.g., ondansetron, dexamethasone, NK1 antagonist)",
+                "cycles": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6
+                ]
+            }
+        ],
+        "cycle_days": 21,
+        "total_cycles": 6
+    }
+}

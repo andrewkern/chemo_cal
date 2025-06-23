@@ -1,0 +1,180 @@
+{
+    "DVd (Daratumumab, Bortezomib, Dexamethasone - Simplified Dexamethasone Schedule)": {
+        "name": "DVd Induction Regimen (Simplified Dexamethasone)",
+        "description": "Daratumumab, Bortezomib (Velcade) and Dexamethasone",
+        "schedule": [
+            {
+                "day": 1,
+                "description": "Daratumumab",
+                "cycles": [
+                    1,
+                    2,
+                    3
+                ]
+            },
+            {
+                "day": 8,
+                "description": "Daratumumab",
+                "cycles": [
+                    1,
+                    2,
+                    3
+                ]
+            },
+            {
+                "day": 15,
+                "description": "Daratumumab",
+                "cycles": [
+                    1,
+                    2,
+                    3
+                ]
+            },
+            {
+                "day": 22,
+                "description": "Daratumumab",
+                "cycles": [
+                    1,
+                    2,
+                    3
+                ]
+            },
+            {
+                "day": 1,
+                "description": "Daratumumab",
+                "cycles": [
+                    4,
+                    5,
+                    6,
+                    7,
+                    8
+                ]
+            },
+            {
+                "day": 15,
+                "description": "Daratumumab",
+                "cycles": [
+                    4,
+                    5,
+                    6,
+                    7,
+                    8
+                ]
+            },
+            {
+                "day": 1,
+                "description": "Bortezomib",
+                "cycles": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8
+                ]
+            },
+            {
+                "day": 4,
+                "description": "Bortezomib",
+                "cycles": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8
+                ]
+            },
+            {
+                "day": 8,
+                "description": "Bortezomib",
+                "cycles": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8
+                ]
+            },
+            {
+                "day": 11,
+                "description": "Bortezomib",
+                "cycles": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8
+                ]
+            },
+            {
+                "day": 1,
+                "description": "Dexamethasone",
+                "cycles": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8
+                ]
+            },
+            {
+                "day": 4,
+                "description": "Dexamethasone",
+                "cycles": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8
+                ]
+            },
+            {
+                "day": 8,
+                "description": "Dexamethasone",
+                "cycles": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8
+                ]
+            },
+            {
+                "day": 11,
+                "description": "Dexamethasone",
+                "cycles": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8
+                ]
+            }
+        ],
+        "cycle_days": 28,
+        "total_cycles": 8
+    }
+}

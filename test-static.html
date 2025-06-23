@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test Static API</title>
+</head>
+<body>
+    <h1>Testing Static API Functions</h1>
+    <div id="results"></div>
+    
+    <script src="frontend/js/regimens-data.js"></script>
+    <script src="frontend/js/api-local.js"></script>
+    <script>
+        const results = document.getElementById('results');
+        
+        // Test loading regimens
+        async function runTests() {
+            results.innerHTML = '<h2>Loading regimens...</h2>';
+            
+            try {
+                await loadAdditionalRegimens();
+                const regimens = getRegimens();
+                results.innerHTML += `<p>Found ${regimens.length} regimens</p>`;
+                
+                // Test getting details
+                if (regimens.length > 0) {
+                    const firstRegimen = regimens[0];
+                    const details = getRegimenDetails(firstRegimen.id);
+                    results.innerHTML += `<p>First regimen: ${details.name}</p>`;
+                    
+                    // Test schedule calculation
+                    const schedule = calculateSchedule({
+                        regimen_id: firstRegimen.id,
+                        start_date: '2024-01-01',
+                        total_cycles: 3,
+                        starting_cycle: 1
+                    });
+                    results.innerHTML += `<p>Generated ${schedule.events.length} events</p>`;
+                    results.innerHTML += '<p style="color: green;">✓ All tests passed!</p>';
+                }
+            } catch (error) {
+                results.innerHTML += `<p style="color: red;">Error: ${error.message}</p>`;
+            }
+        }
+        
+        runTests();
+    </script>
+</body>
+</html>

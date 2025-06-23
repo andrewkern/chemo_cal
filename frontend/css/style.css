@@ -88,6 +88,105 @@ header p {
     color: #8b7355;
 }
 
+/* Advanced Options Toggle */
+.advanced-toggle {
+    margin-right: 8px;
+    cursor: pointer;
+    width: 18px;
+    height: 18px;
+    vertical-align: middle;
+}
+
+.toggle-label {
+    cursor: pointer;
+    font-weight: 500;
+    color: #5d4e37;
+    position: relative;
+    padding-bottom: 2px;
+    border-bottom: 1px dotted #8b7355;
+}
+
+.toggle-label:hover {
+    color: #4a3d2a;
+    border-bottom-color: #5d4e37;
+}
+
+/* Native tooltip styling */
+.toggle-label[title] {
+    position: relative;
+}
+
+.toggle-label[title]:hover::after {
+    content: attr(title);
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    background-color: #4a3d2a;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 13px;
+    white-space: nowrap;
+    z-index: 1000;
+    margin-bottom: 8px;
+    font-weight: normal;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.toggle-label[title]:hover::before {
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    left: 20px;
+    border: 5px solid transparent;
+    border-top-color: #4a3d2a;
+    margin-bottom: 3px;
+    z-index: 1001;
+}
+
+.advanced-options {
+    background-color: #faf4e8;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #e8dcc2;
+    animation: slideDown 0.3s ease-out;
+}
+
+.cycle-options-row {
+    display: flex;
+    gap: 20px;
+    align-items: flex-end;
+}
+
+.form-group.compact {
+    flex: 1;
+    min-width: 0;
+    margin: 0;
+}
+
+.form-group.compact label {
+    font-size: 14px;
+    margin-bottom: 4px;
+}
+
+.form-group.compact input {
+    padding: 8px 12px;
+    font-size: 14px;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 /* Button Group */
 .button-group {
     display: flex;

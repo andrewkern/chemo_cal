@@ -1,0 +1,262 @@
+{
+    "Azacitidine + Venetoclax (AZA + VEN)": {
+        "name": "Azacitidine + Venetoclax Regimen",
+        "description": "Azacitidine on Days 1\u20135, 8, 9 and Venetoclax on Days 1\u201314 for AML, 28-day cycles",
+        "schedule": [
+            {
+                "day": 1,
+                "description": "Azacitidine",
+                "cycles": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6
+                ]
+            },
+            {
+                "day": 2,
+                "description": "Azacitidine",
+                "cycles": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6
+                ]
+            },
+            {
+                "day": 3,
+                "description": "Azacitidine",
+                "cycles": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6
+                ]
+            },
+            {
+                "day": 4,
+                "description": "Azacitidine",
+                "cycles": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6
+                ]
+            },
+            {
+                "day": 5,
+                "description": "Azacitidine",
+                "cycles": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6
+                ]
+            },
+            {
+                "day": 8,
+                "description": "Azacitidine",
+                "cycles": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6
+                ]
+            },
+            {
+                "day": 9,
+                "description": "Azacitidine",
+                "cycles": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6
+                ]
+            },
+            {
+                "day": 1,
+                "description": "Venetoclax 400 mg",
+                "cycles": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6
+                ]
+            },
+            {
+                "day": 2,
+                "description": "Venetoclax 400 mg",
+                "cycles": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6
+                ]
+            },
+            {
+                "day": 3,
+                "description": "Venetoclax 400 mg",
+                "cycles": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6
+                ]
+            },
+            {
+                "day": 4,
+                "description": "Venetoclax 400 mg",
+                "cycles": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6
+                ]
+            },
+            {
+                "day": 5,
+                "description": "Venetoclax 400 mg",
+                "cycles": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6
+                ]
+            },
+            {
+                "day": 6,
+                "description": "Venetoclax 400 mg",
+                "cycles": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6
+                ]
+            },
+            {
+                "day": 7,
+                "description": "Venetoclax 400 mg",
+                "cycles": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6
+                ]
+            },
+            {
+                "day": 8,
+                "description": "Venetoclax 400 mg",
+                "cycles": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6
+                ]
+            },
+            {
+                "day": 9,
+                "description": "Venetoclax 400 mg",
+                "cycles": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6
+                ]
+            },
+            {
+                "day": 10,
+                "description": "Venetoclax 400 mg",
+                "cycles": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6
+                ]
+            },
+            {
+                "day": 11,
+                "description": "Venetoclax 400 mg",
+                "cycles": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6
+                ]
+            },
+            {
+                "day": 12,
+                "description": "Venetoclax 400 mg",
+                "cycles": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6
+                ]
+            },
+            {
+                "day": 13,
+                "description": "Venetoclax 400 mg",
+                "cycles": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6
+                ]
+            },
+            {
+                "day": 14,
+                "description": "Venetoclax 400 mg",
+                "cycles": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6
+                ]
+            }
+        ],
+        "cycle_days": 28,
+        "total_cycles": 6
+    }
+}

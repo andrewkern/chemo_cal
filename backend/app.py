@@ -13,43 +13,31 @@ CORS(app)
 def load_regimens_from_json():
     """Load drug regimens from JSON files in the drug_json directory"""
     regimens = {}
-    json_dir = os.path.join(os.path.dirname(__file__), 'drug_json')
-    
+    json_dir = os.path.join(os.path.dirname(__file__), "drug_json")
+
     # Check if directory exists
     if not os.path.exists(json_dir):
         print(f"Warning: {json_dir} directory not found")
         return regimens
-    
+
     # Load all JSON files
-    json_files = glob.glob(os.path.join(json_dir, '*.json'))
-    
+    json_files = glob.glob(os.path.join(json_dir, "*.json"))
+
     for json_file in json_files:
         try:
-            with open(json_file, 'r') as f:
+            with open(json_file, "r") as f:
                 data = json.load(f)
                 # Each JSON file contains a single regimen with its key
                 regimens.update(data)
                 print(f"Loaded regimen from {os.path.basename(json_file)}")
         except Exception as e:
             print(f"Error loading {json_file}: {e}")
-    
+
     return regimens
 
 
 # Sample drug regimens with their schedules
 DRUG_REGIMENS = {
-    "chemotherapy_weekly": {
-        "name": "Weekly Chemotherapy",
-        "description": "Standard weekly chemotherapy protocol",
-        "schedule": [
-            {"day": 1, "description": "Chemotherapy infusion"},
-            {"day": 8, "description": "Chemotherapy infusion"},
-            {"day": 15, "description": "Chemotherapy infusion"},
-            {"day": 22, "description": "Rest week", "type": "rest"},
-        ],
-        "cycle_days": 28,
-        "total_cycles": 6,
-    },
     "Pola-R-CHP (Polatuzumab, Rituximab, Cyclophosphamide, Doxorubicin, Prednisone)": {
         "name": "Pola-R-CHP Regimen",
         "description": "Polatuzumab, Rituximab, Cyclophosphamide, Doxorubicin, Prednisone",
@@ -135,67 +123,6 @@ DRUG_REGIMENS = {
         "cycle_days": 21,
         "total_cycles": 8,
     },
-    "combination_therapy": {
-        "name": "Combination Therapy",
-        "description": "Multiple drugs with different cycle counts",
-        "schedule": [
-            {
-                "day": 1,
-                "description": "Drug A infusion",
-                "cycles": [1, 2, 3, 4, 5, 6, 7, 8],
-            },
-            {"day": 1, "description": "Drug B infusion", "cycles": [1, 2, 3, 4]},
-            {
-                "day": 8,
-                "description": "Drug A infusion",
-                "cycles": [1, 2, 3, 4, 5, 6, 7, 8],
-            },
-            {"day": 15, "description": "Blood work", "cycles": "all"},
-        ],
-        "cycle_days": 21,
-        "total_cycles": 8,
-    },
-    "chemotherapy_21day": {
-        "name": "21-Day Chemotherapy Cycle",
-        "description": "Common 3-week chemotherapy cycle",
-        "schedule": [
-            {"day": 1, "description": "Chemotherapy infusion"},
-            {"day": 2, "description": "Post-treatment monitoring"},
-            {"day": 8, "description": "Blood work"},
-            {"day": 15, "description": "Mid-cycle check-up"},
-        ],
-        "cycle_days": 21,
-        "total_cycles": 8,
-    },
-    "immunotherapy_monthly": {
-        "name": "Monthly Immunotherapy",
-        "description": "Monthly immunotherapy treatment",
-        "schedule": [
-            {"day": 1, "description": "Immunotherapy infusion"},
-            {"day": 2, "description": "Monitoring"},
-            {"day": 14, "description": "Mid-cycle blood work"},
-        ],
-        "cycle_days": 28,
-        "total_cycles": 12,
-    },
-    "radiation_daily": {
-        "name": "Daily Radiation Therapy",
-        "description": "Monday-Friday radiation treatments",
-        "schedule": "weekdays",
-        "total_days": 30,
-        "description_template": "Radiation therapy session",
-    },
-    "hormone_therapy": {
-        "name": "Hormone Therapy",
-        "description": "Daily oral medication with monthly check-ups",
-        "schedule": [
-            {"day": 1, "description": "Start daily medication"},
-            {"day": 28, "description": "Monthly check-up and refill"},
-        ],
-        "cycle_days": 28,
-        "total_cycles": 24,
-        "daily_medication": True,
-    },
 }
 
 # Load regimens from JSON files and merge with hardcoded ones
@@ -230,6 +157,9 @@ def calculate_schedule():
     regimen_id = data.get("regimen_id")
     start_date_str = data.get("start_date")
     custom_cycles = data.get("total_cycles")  # Optional custom cycle count
+    starting_cycle = data.get(
+        "starting_cycle", 1
+    )  # Optional starting cycle (default 1)
 
     if not regimen_id or not start_date_str:
         return jsonify({"error": "Missing required parameters"}), 400
@@ -250,6 +180,14 @@ def calculate_schedule():
                 return jsonify({"error": "Cycle count must be between 1 and 100"}), 400
         except (ValueError, TypeError):
             return jsonify({"error": "Invalid cycle count"}), 400
+
+    # Validate starting cycle if provided
+    try:
+        starting_cycle = int(starting_cycle)
+        if starting_cycle < 1 or starting_cycle > 101:
+            return jsonify({"error": "Starting cycle must be between 1 and 101"}), 400
+    except (ValueError, TypeError):
+        return jsonify({"error": "Invalid starting cycle"}), 400
 
     regimen = DRUG_REGIMENS[regimen_id]
     events = []
@@ -277,6 +215,8 @@ def calculate_schedule():
     else:
         # Handle cycle-based regimens
         for cycle in range(total_cycles):
+            # Calculate the actual cycle number (starting from starting_cycle)
+            actual_cycle_number = starting_cycle + cycle
             cycle_start = start_date + timedelta(days=cycle * regimen["cycle_days"])
 
             for schedule_item in regimen["schedule"]:
@@ -289,15 +229,15 @@ def calculate_schedule():
                     # Explicitly include in all cycles
                     should_include = True
                 elif isinstance(schedule_item["cycles"], list):
-                    # Include only if current cycle is in the list (1-based)
-                    should_include = (cycle + 1) in schedule_item["cycles"]
+                    # Include only if actual cycle number is in the list (1-based)
+                    should_include = actual_cycle_number in schedule_item["cycles"]
 
                 if should_include:
                     event_date = cycle_start + timedelta(days=schedule_item["day"] - 1)
                     event = {
                         "date": event_date.strftime("%Y-%m-%d"),
                         "title": schedule_item["description"],  # Use drug name as title
-                        "description": f"Cycle {cycle + 1}, Day {schedule_item['day']}",
+                        "description": f"Cycle {actual_cycle_number}, Day {schedule_item['day']}",
                         "drug_name": schedule_item[
                             "description"
                         ],  # Track drug name for coloring
@@ -318,7 +258,7 @@ def calculate_schedule():
                             {
                                 "date": med_date.strftime("%Y-%m-%d"),
                                 "title": "Daily medication",
-                                "description": "Take prescribed medication",
+                                "description": f"Cycle {actual_cycle_number}, Day {day} - Take prescribed medication",
                                 "type": "medication",
                             }
                         )
@@ -328,6 +268,7 @@ def calculate_schedule():
             "regimen": regimen,
             "regimen_name": regimen["name"],
             "start_date": start_date_str,
+            "starting_cycle": starting_cycle,
             "total_cycles": total_cycles,
             "events": sorted(events, key=lambda x: x["date"]),
         }
@@ -341,6 +282,9 @@ def calculate_schedule_custom():
     regimen_data = data.get("regimen_data")
     start_date_str = data.get("start_date")
     custom_cycles = data.get("total_cycles")
+    starting_cycle = data.get(
+        "starting_cycle", 1
+    )  # Optional starting cycle (default 1)
 
     if not regimen_data or not start_date_str:
         return jsonify({"error": "Missing required parameters"}), 400
@@ -359,18 +303,30 @@ def calculate_schedule_custom():
         except (ValueError, TypeError):
             return jsonify({"error": "Invalid cycle count"}), 400
 
+    # Validate starting cycle if provided
+    try:
+        starting_cycle = int(starting_cycle)
+        if starting_cycle < 1 or starting_cycle > 101:
+            return jsonify({"error": "Starting cycle must be between 1 and 101"}), 400
+    except (ValueError, TypeError):
+        return jsonify({"error": "Invalid starting cycle"}), 400
+
     events = []
-    
+
     # Use custom cycles if provided, otherwise use regimen default
     total_cycles = (
-        custom_cycles if custom_cycles is not None else regimen_data.get("total_cycles", 1)
+        custom_cycles
+        if custom_cycles is not None
+        else regimen_data.get("total_cycles", 1)
     )
-    
+
     # Update the regimen data with the actual total cycles used
     regimen_data["total_cycles"] = total_cycles
 
     # Handle cycle-based regimens
     for cycle in range(total_cycles):
+        # Calculate the actual cycle number (starting from starting_cycle)
+        actual_cycle_number = starting_cycle + cycle
         cycle_start = start_date + timedelta(days=cycle * regimen_data["cycle_days"])
 
         for schedule_item in regimen_data["schedule"]:
@@ -383,15 +339,15 @@ def calculate_schedule_custom():
                 # Explicitly include in all cycles
                 should_include = True
             elif isinstance(schedule_item["cycles"], list):
-                # Include only if current cycle is in the list (1-based)
-                should_include = (cycle + 1) in schedule_item["cycles"]
+                # Include only if actual cycle number is in the list (1-based)
+                should_include = actual_cycle_number in schedule_item["cycles"]
 
             if should_include:
                 event_date = cycle_start + timedelta(days=schedule_item["day"] - 1)
                 event = {
                     "date": event_date.strftime("%Y-%m-%d"),
                     "title": schedule_item["description"],
-                    "description": f"Cycle {cycle + 1}, Day {schedule_item['day']}",
+                    "description": f"Cycle {actual_cycle_number}, Day {schedule_item['day']}",
                     "drug_name": schedule_item["description"],
                 }
                 # Add type if specified
@@ -405,6 +361,7 @@ def calculate_schedule_custom():
         {
             "regimen": regimen_data,
             "start_date": start_date_str,
+            "starting_cycle": starting_cycle,
             "total_cycles": total_cycles,
             "events": sorted(events, key=lambda x: x["date"]),
         }

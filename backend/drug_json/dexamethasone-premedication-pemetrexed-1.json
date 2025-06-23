@@ -1,0 +1,45 @@
+{
+    "Dexamethasone Premedication for Pemetrexed": {
+        "name": "Dexamethasone Premedication",
+        "description": "Dexamethasone 4 mg PO BID on the day before, day of, and day after pemetrexed to reduce skin rash",
+        "schedule": [
+            {
+                "day": 0,
+                "description": "Dexamethasone 4 mg PO BID",
+                "cycles": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6
+                ]
+            },
+            {
+                "day": 1,
+                "description": "Dexamethasone 4 mg PO BID",
+                "cycles": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6
+                ]
+            },
+            {
+                "day": 2,
+                "description": "Dexamethasone 4 mg PO BID",
+                "cycles": [
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6
+                ]
+            }
+        ],
+        "notes": "Administered on Days 0\u20132 relative to chemotherapy Day 1 to prevent pemetrexed-induced skin toxicity. PO = by mouth; BID = twice daily."
+    }
+}
