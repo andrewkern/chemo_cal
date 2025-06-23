@@ -89,27 +89,38 @@ const DRUG_REGIMENS = {
 
 // List of additional regimen JSON files to load
 const REGIMEN_JSON_FILES = [
-    'ac-regimen.json',
-    'bep-regimen.json',
-    'cabazitaxel-prednisone-regimen.json',
-    'carbo-taxol-regimen.json',
-    'dd-mvac-regimen.json',
-    'enfortumab-vedotin-pembrolizumab-regimen.json',
-    'folfiri-regimen.json',
-    'folfox-regimen.json',
-    'gem-cis-regimen.json',
-    'nivolumab-regimen.json',
-    'r-chop-regimen.json',
-    'r-dhap-regimen.json',
-    'radiation-therapy-regimen.json',
-    'tc-regimen.json'
+    'ac-d-gcsf.json',
+    'ac-t-gcsf.json',
+    'atezolizumab-carboplatin-etoposide.json',
+    'azacitadine-venetoclax.json',
+    'carboplatin-docetaxel-dcb.json',
+    'carboplatin-paclitaxel-radiation-therapy.json',
+    'carboplatin-radiation-therapy-weekly.json',
+    'cisplatin-radiation-therapy-weekly.json',
+    'ddac-d-gcsf.json',
+    'ddac-t-gcsf.json',
+    'dexamethasone-premedication-docetaxel.json',
+    'dexamethasone-premedication-pemetrexed-1.json',
+    'dvd-simplified.json',
+    'AC-D_GCSF.json',
+    'AC-T_GCSF.json',
+    'AmiCarboPem.json',
+    'AmiCarboPem_2.json',
+    'CP-AC.json',
+    'DVd.json',
+    'FOLFIRINOX.json',
+    'Pola-R-CHP.json',
+    'R-CHOP.json',
+    'ddAC-D_GCSF.json',
+    'ddAC-T_GCSF.json',
+    'mini-RCHOP.json'
 ];
 
 // Load additional regimens from JSON files
 async function loadAdditionalRegimens() {
     for (const filename of REGIMEN_JSON_FILES) {
         try {
-            const response = await fetch(`../backend/new_jsons/${filename}`);
+            const response = await fetch(`../backend/drug_json/${filename}`);
             if (response.ok) {
                 const data = await response.json();
                 // Merge the loaded regimen into DRUG_REGIMENS
