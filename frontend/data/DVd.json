@@ -1,0 +1,57 @@
+{
+  "DVd (Darzalex, Velcade, dexamethasone)": {
+    "name": "DVd Regimen",
+    "description": "Darzalex, Velcade, and dexamethasone regimen",
+    "schedule": [
+      {"day": 1, "description": "Darzalex", "cycles": [1, 2, 3, 4, 5, 6, 7, 8]},
+      {"day": 8, "description": "Darzalex", "cycles": [1, 2, 3]},
+      {"day": 15, "description": "Darzalex", "cycles": [1, 2, 3]},
+      {"day": 1, "description": "Velcade", "cycles": [1, 2, 3, 4, 5, 6, 7, 8]},
+      {"day": 4, "description": "Velcade", "cycles": [1, 2, 3, 4, 5, 6, 7, 8]},
+      {"day": 8, "description": "Velcade", "cycles": [1, 2, 3, 4, 5, 6, 7, 8]},
+      {"day": 11, "description": "Velcade", "cycles": [1, 2, 3, 4, 5, 6, 7, 8]},
+      {
+        "day": 1,
+        "description": "Dexamethasone",
+        "cycles": [1, 2, 3, 4, 5, 6, 7, 8]
+      },
+      {
+        "day": 2,
+        "description": "Dexamethasone",
+        "cycles": [1, 2, 3, 4, 5, 6, 7, 8]
+      },
+      {
+        "day": 4,
+        "description": "Dexamethasone",
+        "cycles": [1, 2, 3, 4, 5, 6, 7, 8]
+      },
+      {
+        "day": 5,
+        "description": "Dexamethasone",
+        "cycles": [1, 2, 3, 4, 5, 6, 7, 8]
+      },
+      {
+        "day": 8,
+        "description": "Dexamethasone",
+        "cycles": [1, 2, 3, 4, 5, 6, 7, 8]
+      },
+      {
+        "day": 9,
+        "description": "Dexamethasone",
+        "cycles": [1, 2, 3, 4, 5, 6, 7, 8]
+      },
+      {
+        "day": 11,
+        "description": "Dexamethasone",
+        "cycles": [1, 2, 3, 4, 5, 6, 7, 8]
+      },
+      {
+        "day": 12,
+        "description": "Dexamethasone",
+        "cycles": [1, 2, 3, 4, 5, 6, 7, 8]
+      }
+    ],
+    "cycle_days": 21,
+    "total_cycles": 8
+  }
+}

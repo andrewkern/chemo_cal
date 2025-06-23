@@ -1,0 +1,60 @@
+{
+    "Dose-Dense AC-T (Doxorubicin, Cyclophosphamide \u2192 Paclitaxel with Growth Factor Support)": {
+        "name": "Dose-Dense AC-T Regimen with Growth Factor",
+        "description": "Doxorubicin and Cyclophosphamide every 2 weeks for 4 cycles, followed by Paclitaxel every 2 weeks for 4 cycles, with pegfilgrastim support after each cycle",
+        "schedule": [
+            {
+                "day": 1,
+                "description": "Doxorubicin",
+                "cycles": [
+                    1,
+                    2,
+                    3,
+                    4
+                ]
+            },
+            {
+                "day": 1,
+                "description": "Cyclophosphamide",
+                "cycles": [
+                    1,
+                    2,
+                    3,
+                    4
+                ]
+            },
+            {
+                "day": 2,
+                "description": "Pegfilgrastim (growth factor)",
+                "cycles": [
+                    1,
+                    2,
+                    3,
+                    4
+                ]
+            },
+            {
+                "day": 1,
+                "description": "Paclitaxel",
+                "cycles": [
+                    5,
+                    6,
+                    7,
+                    8
+                ]
+            },
+            {
+                "day": 2,
+                "description": "Pegfilgrastim (growth factor)",
+                "cycles": [
+                    5,
+                    6,
+                    7,
+                    8
+                ]
+            }
+        ],
+        "cycle_days": 14,
+        "total_cycles": 8
+    }
+}

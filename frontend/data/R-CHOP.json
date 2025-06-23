@@ -1,0 +1,19 @@
+{
+  "R-CHOP (Rituximab, Cyclophosphamide, Doxorubicin, Vincristine, Prednisone)": {
+    "name": "R-CHOP Regimen",
+    "description": "Rituximab, Cyclophosphamide, Doxorubicin, Vincristine, Prednisone",
+    "schedule": [
+      { "day": 1, "description": "Rituximab", "cycles": [1, 2, 3, 4, 5, 6, 7, 8] },
+      { "day": 1, "description": "Cyclophosphamide", "cycles": [1, 2, 3, 4, 5, 6, 7, 8] },
+      { "day": 1, "description": "Doxorubicin", "cycles": [1, 2, 3, 4, 5, 6, 7, 8] },
+      { "day": 1, "description": "Vincristine", "cycles": [1, 2, 3, 4, 5, 6, 7, 8] },
+      { "day": 1, "description": "Prednisone", "cycles": [1, 2, 3, 4, 5, 6, 7, 8] },
+      { "day": 2, "description": "Prednisone", "cycles": [1, 2, 3, 4, 5, 6, 7, 8] },
+      { "day": 3, "description": "Prednisone", "cycles": [1, 2, 3, 4, 5, 6, 7, 8] },
+      { "day": 4, "description": "Prednisone", "cycles": [1, 2, 3, 4, 5, 6, 7, 8] },
+      { "day": 5, "description": "Prednisone", "cycles": [1, 2, 3, 4, 5, 6, 7, 8] }
+    ],
+    "cycle_days": 21,
+    "total_cycles": 8
+  }
+}

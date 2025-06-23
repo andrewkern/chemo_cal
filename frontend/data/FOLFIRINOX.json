@@ -1,0 +1,15 @@
+{
+  "FOLFIRINOX (5‑Fluorouracil (5‑FU), Oxaliplatin, Irinotecan, Leucovorin)": {
+    "name": "FOLFIRINOX",
+    "description": "5‑Fluorouracil (5‑FU), Oxaliplatin, Irinotecan, Leucovorin",
+    "schedule": [
+      { "day": 1, "description": "5‑Fluorouracil (5‑FU)", "cycles": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] },
+      { "day": 1, "description": "Oxaliplatin", "cycles": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] },
+      { "day": 1, "description": "Leucovorin", "cycles": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] },
+      { "day": 1, "description": "Irinotecan", "cycles": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] },
+      { "day": 3, "description": "Pump Disconnect", "cycles": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] }
+    ],
+    "cycle_days": 14,
+    "total_cycles": 12
+  }
+}

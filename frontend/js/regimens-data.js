@@ -121,19 +121,10 @@ async function loadAdditionalRegimens() {
     console.log('Starting to load additional regimens...');
     let loadedCount = 0;
     
-    // Get the base URL for the site
-    let baseUrl = window.location.href;
-    if (baseUrl.includes('/frontend/')) {
-        // We're in the frontend directory
-        baseUrl = baseUrl.substring(0, baseUrl.indexOf('/frontend/'));
-    } else {
-        // We're at the root (GitHub Pages)
-        baseUrl = baseUrl.substring(0, baseUrl.lastIndexOf('/'));
-    }
-    
     for (const filename of REGIMEN_JSON_FILES) {
         try {
-            const url = `${baseUrl}/backend/drug_json/${filename}`;
+            // Use relative path from JS file location
+            const url = `../data/${filename}`;
             console.log(`Attempting to load: ${url}`);
             const response = await fetch(url);
             if (response.ok) {
