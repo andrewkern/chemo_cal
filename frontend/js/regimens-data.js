@@ -120,9 +120,22 @@ const REGIMEN_JSON_FILES = [
 async function loadAdditionalRegimens() {
     console.log('Starting to load additional regimens...');
     let loadedCount = 0;
+    
+    // Get the base URL for the site
+    let baseUrl = window.location.href;
+    if (baseUrl.includes('/frontend/')) {
+        // We're in the frontend directory
+        baseUrl = baseUrl.substring(0, baseUrl.indexOf('/frontend/'));
+    } else {
+        // We're at the root (GitHub Pages)
+        baseUrl = baseUrl.substring(0, baseUrl.lastIndexOf('/'));
+    }
+    
     for (const filename of REGIMEN_JSON_FILES) {
         try {
-            const response = await fetch(`../../backend/drug_json/${filename}`);
+            const url = `${baseUrl}/backend/drug_json/${filename}`;
+            console.log(`Attempting to load: ${url}`);
+            const response = await fetch(url);
             if (response.ok) {
                 const data = await response.json();
                 // Merge the loaded regimen into DRUG_REGIMENS
