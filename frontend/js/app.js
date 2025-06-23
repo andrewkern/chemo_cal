@@ -76,6 +76,9 @@ async function loadRegimens() {
         
         const regimens = getRegimens();
         
+        // Sort regimens alphabetically by name
+        regimens.sort((a, b) => a.name.localeCompare(b.name));
+        
         const select = document.getElementById('regimen-select');
         regimens.forEach(regimen => {
             const option = document.createElement('option');
