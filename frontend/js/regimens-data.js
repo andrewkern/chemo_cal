@@ -118,18 +118,25 @@ const REGIMEN_JSON_FILES = [
 
 // Load additional regimens from JSON files
 async function loadAdditionalRegimens() {
+    console.log('Starting to load additional regimens...');
+    let loadedCount = 0;
     for (const filename of REGIMEN_JSON_FILES) {
         try {
-            const response = await fetch(`../backend/drug_json/${filename}`);
+            const response = await fetch(`../../backend/drug_json/${filename}`);
             if (response.ok) {
                 const data = await response.json();
                 // Merge the loaded regimen into DRUG_REGIMENS
                 Object.assign(DRUG_REGIMENS, data);
+                loadedCount++;
+                console.log(`Loaded ${filename}`);
+            } else {
+                console.warn(`Failed to load ${filename}: ${response.status}`);
             }
         } catch (error) {
             console.warn(`Could not load ${filename}:`, error);
         }
     }
+    console.log(`Loaded ${loadedCount} additional regimens. Total: ${Object.keys(DRUG_REGIMENS).length}`);
 }
 
 // Initialize regimens when the module loads
