@@ -76,8 +76,14 @@ async function loadRegimens() {
         
         const regimens = getRegimens();
         
-        // Sort regimens alphabetically by name
-        regimens.sort((a, b) => a.name.localeCompare(b.name));
+        // Sort regimens alphabetically by name (case-insensitive)
+        regimens.sort((a, b) => {
+            const nameA = a.name.toLowerCase();
+            const nameB = b.name.toLowerCase();
+            return nameA.localeCompare(nameB);
+        });
+        
+        console.log(`Loading ${regimens.length} regimens in alphabetical order`);
         
         const select = document.getElementById('regimen-select');
         regimens.forEach(regimen => {
