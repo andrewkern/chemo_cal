@@ -32,8 +32,9 @@ function calculateSchedule({ regimen_id, start_date, total_cycles, starting_cycl
         throw new Error('Invalid regimen');
     }
 
-    // Parse the start date
-    const startDate = new Date(start_date);
+    // Parse the start date - ensure local timezone interpretation
+    const [year, month, day] = start_date.split('-').map(num => parseInt(num));
+    const startDate = new Date(year, month - 1, day); // month is 0-indexed
     if (isNaN(startDate.getTime())) {
         throw new Error('Invalid date format');
     }
@@ -153,8 +154,9 @@ function calculateScheduleCustom({ regimen_data, start_date, total_cycles, start
         throw new Error('Missing required parameters');
     }
 
-    // Parse the start date
-    const startDate = new Date(start_date);
+    // Parse the start date - ensure local timezone interpretation
+    const [year, month, day] = start_date.split('-').map(num => parseInt(num));
+    const startDate = new Date(year, month - 1, day); // month is 0-indexed
     if (isNaN(startDate.getTime())) {
         throw new Error('Invalid date format');
     }
