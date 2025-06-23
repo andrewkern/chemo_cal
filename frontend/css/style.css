@@ -344,13 +344,13 @@ header p {
     }
     
     .container {
-        max-width: 95%;
+        max-width: 90%;
         padding: 0;
         margin: 0;
     }
     
     .calendar-container {
-        width: 95% !important;
+        width: 90% !important;
         height: auto !important;
         min-height: 0 !important;
         box-sizing: border-box !important;

@@ -1,0 +1,16 @@
+{
+  "FOLFOX + Bevacizumab (Oxaliplatin, Leucovorin, 5-FU, Bevacizumab)": {
+    "name": "FOLFOX + Bevacizumab Regimen",
+    "description": "Bevacizumab with Oxaliplatin, Leucovorin, and 5-Fluorouracil (FOLFOX) every 2 weeks",
+    "schedule": [
+      { "day": 1, "description": "Bevacizumab", "cycles": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] },
+      { "day": 1, "description": "Oxaliplatin", "cycles": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] },
+      { "day": 1, "description": "Leucovorin", "cycles": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] },
+      { "day": 1, "description": "5-FU bolus", "cycles": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] },
+      { "day": 1, "description": "5-FU continuous infusion (46 hours)", "cycles": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] },
+      { "day": 3, "description": "Disconnect pump", "cycles": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] }
+    ],
+    "cycle_days": 14,
+    "total_cycles": 12
+  }
+}

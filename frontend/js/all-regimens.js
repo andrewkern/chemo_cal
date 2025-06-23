@@ -1534,6 +1534,104 @@ const ALL_DRUG_REGIMENS = {
     "cycle_days": 21,
     "total_cycles": 8
   },
+  "FOLFOX (Oxaliplatin, Leucovorin, 5-FU bolus and infusion)": {
+    "name": "FOLFOX Regimen",
+    "description": "Modified FOLFOX6 (mFOLFOX6) regimen given every 2 weeks for colorectal cancer",
+    "schedule": [
+      {
+        "day": 1,
+        "description": "Oxaliplatin 85 mg/m\u00b2 IV over 2 hours",
+        "cycles": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ]
+      },
+      {
+        "day": 1,
+        "description": "Leucovorin 400 mg/m\u00b2 IV over 2 hours (concurrent with oxaliplatin)",
+        "cycles": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ]
+      },
+      {
+        "day": 1,
+        "description": "5-FU 400 mg/m\u00b2 IV bolus",
+        "cycles": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ]
+      },
+      {
+        "day": 1,
+        "description": "5-FU 2400 mg/m\u00b2 continuous IV infusion over 46 hours",
+        "cycles": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ]
+      },
+      {
+        "day": 3,
+        "description": "Disconnect 5-FU infusion pump",
+        "cycles": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ]
+      }
+    ],
+    "cycle_days": 14,
+    "total_cycles": 12
+  },
   "Dexamethasone Premedication for Docetaxel": {
     "name": "Dexamethasone (oral) Premedication",
     "description": "Dexamethasone 8 mg PO BID on the day before, day of, and day after docetaxel to reduce the risk of hypersensitivity reactions and fluid retention",
@@ -1789,6 +1887,122 @@ const ALL_DRUG_REGIMENS = {
       }
     ],
     "cycle_days": 21,
+    "total_cycles": 12
+  },
+  "FOLFOX + Bevacizumab (Oxaliplatin, Leucovorin, 5-FU, Bevacizumab)": {
+    "name": "FOLFOX + Bevacizumab Regimen",
+    "description": "Bevacizumab with Oxaliplatin, Leucovorin, and 5-Fluorouracil (FOLFOX) every 2 weeks",
+    "schedule": [
+      {
+        "day": 1,
+        "description": "Bevacizumab",
+        "cycles": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ]
+      },
+      {
+        "day": 1,
+        "description": "Oxaliplatin",
+        "cycles": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ]
+      },
+      {
+        "day": 1,
+        "description": "Leucovorin",
+        "cycles": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ]
+      },
+      {
+        "day": 1,
+        "description": "5-FU bolus",
+        "cycles": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ]
+      },
+      {
+        "day": 1,
+        "description": "5-FU continuous infusion (46 hours)",
+        "cycles": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ]
+      },
+      {
+        "day": 3,
+        "description": "Disconnect pump",
+        "cycles": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12
+        ]
+      }
+    ],
+    "cycle_days": 14,
     "total_cycles": 12
   },
   "Dose-Dense AC-T (Doxorubicin, Cyclophosphamide \u2192 Paclitaxel with Growth Factor Support)": {

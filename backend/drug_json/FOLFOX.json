@@ -1,0 +1,15 @@
+{
+  "FOLFOX (Oxaliplatin, Leucovorin, 5-FU bolus and infusion)": {
+    "name": "FOLFOX Regimen",
+    "description": "Modified FOLFOX6 (mFOLFOX6) regimen given every 2 weeks for colorectal cancer",
+    "schedule": [
+      { "day": 1, "description": "Oxaliplatin 85 mg/m² IV over 2 hours", "cycles": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] },
+      { "day": 1, "description": "Leucovorin 400 mg/m² IV over 2 hours (concurrent with oxaliplatin)", "cycles": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] },
+      { "day": 1, "description": "5-FU 400 mg/m² IV bolus", "cycles": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] },
+      { "day": 1, "description": "5-FU 2400 mg/m² continuous IV infusion over 46 hours", "cycles": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] },
+      { "day": 3, "description": "Disconnect 5-FU infusion pump", "cycles": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] }
+    ],
+    "cycle_days": 14,
+    "total_cycles": 12
+  }
+}
