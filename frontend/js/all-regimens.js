@@ -1316,7 +1316,7 @@ const ALL_DRUG_REGIMENS = {
     "schedule": [
       {
         "day": 1,
-        "description": "Dexamethasone (8 mg PO BID, start 1 day before docetaxel)",
+        "description": "Dexamethasone (start 1 day before docetaxel)",
         "cycles": [
           1,
           2,
@@ -1328,7 +1328,7 @@ const ALL_DRUG_REGIMENS = {
       },
       {
         "day": 0,
-        "description": "Dexamethasone (8 mg PO BID)",
+        "description": "Dexamethasone",
         "cycles": [
           1,
           2,
@@ -1340,7 +1340,7 @@ const ALL_DRUG_REGIMENS = {
       },
       {
         "day": 2,
-        "description": "Dexamethasone (8 mg PO BID)",
+        "description": "Dexamethasone",
         "cycles": [
           1,
           2,
@@ -1634,11 +1634,11 @@ const ALL_DRUG_REGIMENS = {
   },
   "Dexamethasone Premedication for Docetaxel": {
     "name": "Dexamethasone (oral) Premedication",
-    "description": "Dexamethasone 8 mg PO BID on the day before, day of, and day after docetaxel to reduce the risk of hypersensitivity reactions and fluid retention",
+    "description": "Dexamethasone on the day before, day of, and day after docetaxel to reduce the risk of hypersensitivity reactions and fluid retention",
     "schedule": [
       {
         "day": 0,
-        "description": "Dexamethasone 8 mg PO BID",
+        "description": "Dexamethasone",
         "cycles": [
           1,
           2,
@@ -1650,7 +1650,7 @@ const ALL_DRUG_REGIMENS = {
       },
       {
         "day": 1,
-        "description": "Dexamethasone 8 mg PO BID",
+        "description": "Dexamethasone",
         "cycles": [
           1,
           2,
@@ -1662,7 +1662,7 @@ const ALL_DRUG_REGIMENS = {
       },
       {
         "day": 2,
-        "description": "Dexamethasone 8 mg PO BID",
+        "description": "Dexamethasone",
         "cycles": [
           1,
           2,
@@ -1677,11 +1677,11 @@ const ALL_DRUG_REGIMENS = {
   },
   "Dexamethasone Premedication for Pemetrexed": {
     "name": "Dexamethasone Premedication",
-    "description": "Dexamethasone 4 mg PO BID on the day before, day of, and day after pemetrexed to reduce skin rash",
+    "description": "Dexamethasone on the day before, day of, and day after pemetrexed to reduce skin rash",
     "schedule": [
       {
         "day": 0,
-        "description": "Dexamethasone 4 mg PO BID",
+        "description": "Dexamethasone",
         "cycles": [
           1,
           2,
@@ -1693,7 +1693,7 @@ const ALL_DRUG_REGIMENS = {
       },
       {
         "day": 1,
-        "description": "Dexamethasone 4 mg PO BID",
+        "description": "Dexamethasone",
         "cycles": [
           1,
           2,
@@ -1705,7 +1705,7 @@ const ALL_DRUG_REGIMENS = {
       },
       {
         "day": 2,
-        "description": "Dexamethasone 4 mg PO BID",
+        "description": "Dexamethasone",
         "cycles": [
           1,
           2,
