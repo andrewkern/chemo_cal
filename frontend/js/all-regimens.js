@@ -1352,7 +1352,7 @@ const ALL_DRUG_REGIMENS = {
       },
       {
         "day": 1,
-        "description": "Carboplatin (AUC 5\u20136)",
+        "description": "Carboplatin",
         "cycles": [
           1,
           2,
@@ -1396,7 +1396,7 @@ const ALL_DRUG_REGIMENS = {
     "schedule": [
       {
         "day": 1,
-        "description": "Carboplatin (AUC 2)",
+        "description": "Carboplatin",
         "cycles": [
           1,
           2,
@@ -1724,7 +1724,7 @@ const ALL_DRUG_REGIMENS = {
     "schedule": [
       {
         "day": 1,
-        "description": "Carboplatin (AUC 2)",
+        "description": "Carboplatin",
         "cycles": [
           1,
           2,
@@ -1833,7 +1833,7 @@ const ALL_DRUG_REGIMENS = {
       },
       {
         "day": 1,
-        "description": "Carboplatin (AUC 5\u20136)",
+        "description": "Carboplatin",
         "cycles": [
           1,
           2,
@@ -2087,7 +2087,7 @@ const ALL_DRUG_REGIMENS = {
       },
       {
         "day": 1,
-        "description": "Carboplatin (AUC 5\u20136)",
+        "description": "Carboplatin",
         "cycles": [
           1,
           3,
