@@ -980,7 +980,7 @@ const ALL_DRUG_REGIMENS = {
     "schedule": [
       {
         "day": 1,
-        "description": "Rituximab (reduced dose)",
+        "description": "Rituximab",
         "cycles": [
           1,
           2,
@@ -992,7 +992,7 @@ const ALL_DRUG_REGIMENS = {
       },
       {
         "day": 1,
-        "description": "Cyclophosphamide (reduced dose)",
+        "description": "Cyclophosphamide",
         "cycles": [
           1,
           2,
@@ -1004,7 +1004,7 @@ const ALL_DRUG_REGIMENS = {
       },
       {
         "day": 1,
-        "description": "Doxorubicin (reduced dose)",
+        "description": "Doxorubicin",
         "cycles": [
           1,
           2,
@@ -1016,7 +1016,7 @@ const ALL_DRUG_REGIMENS = {
       },
       {
         "day": 1,
-        "description": "Vincristine (reduced dose)",
+        "description": "Vincristine",
         "cycles": [
           1,
           2,
