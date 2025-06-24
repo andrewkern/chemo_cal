@@ -1096,7 +1096,7 @@ const ALL_DRUG_REGIMENS = {
     "schedule": [
       {
         "day": 1,
-        "description": "Cisplatin (40 mg/m\u00b2)",
+        "description": "Cisplatin",
         "cycles": [
           1,
           2,
@@ -1540,7 +1540,7 @@ const ALL_DRUG_REGIMENS = {
     "schedule": [
       {
         "day": 1,
-        "description": "Oxaliplatin 85 mg/m\u00b2 IV over 2 hours",
+        "description": "Oxaliplatin IV over 2 hours",
         "cycles": [
           1,
           2,
@@ -1558,7 +1558,7 @@ const ALL_DRUG_REGIMENS = {
       },
       {
         "day": 1,
-        "description": "Leucovorin 400 mg/m\u00b2 IV over 2 hours (concurrent with oxaliplatin)",
+        "description": "Leucovorin IV over 2 hours (concurrent with oxaliplatin)",
         "cycles": [
           1,
           2,
@@ -1576,7 +1576,7 @@ const ALL_DRUG_REGIMENS = {
       },
       {
         "day": 1,
-        "description": "5-FU 400 mg/m\u00b2 IV bolus",
+        "description": "5-FU IV bolus",
         "cycles": [
           1,
           2,
@@ -1594,7 +1594,7 @@ const ALL_DRUG_REGIMENS = {
       },
       {
         "day": 1,
-        "description": "5-FU 2400 mg/m\u00b2 continuous IV infusion over 46 hours",
+        "description": "5-FU continuous IV infusion over 46 hours",
         "cycles": [
           1,
           2,
@@ -1612,7 +1612,7 @@ const ALL_DRUG_REGIMENS = {
       },
       {
         "day": 3,
-        "description": "Disconnect 5-FU infusion pump",
+        "description": "Pump Disconnect",
         "cycles": [
           1,
           2,
