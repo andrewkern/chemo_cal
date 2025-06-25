@@ -1177,14 +1177,14 @@ const ALL_DRUG_REGIMENS = {
     "total_cycles": 7
   },
   "Rituximab Q6M": {
-    "name": "Rituximab Q6M",
-    "description": "Rituximab IV D1,8,15,22 Q6M",
-    "cycle_length_days": 180,
-    "number_of_cycles": 4,
+    "name": "Rituximab D1,D8,D15,D22 Q 6M",
+    "description": "Rituximab",
+    "cycle_days": 180,
+    "total_cycles": 4,
     "schedule": [
       {
         "day": 1,
-        "description": "Rituxan",
+        "description": "Rituximab",
         "cycles": [
           1,
           2,
@@ -1194,7 +1194,7 @@ const ALL_DRUG_REGIMENS = {
       },
       {
         "day": 8,
-        "description": "Rituxan",
+        "description": "Rituximab",
         "cycles": [
           1,
           2,
@@ -1204,7 +1204,7 @@ const ALL_DRUG_REGIMENS = {
       },
       {
         "day": 15,
-        "description": "Rituxan",
+        "description": "Rituximab",
         "cycles": [
           1,
           2,
@@ -1214,7 +1214,7 @@ const ALL_DRUG_REGIMENS = {
       },
       {
         "day": 22,
-        "description": "Rituxan",
+        "description": "Rituximab",
         "cycles": [
           1,
           2,
