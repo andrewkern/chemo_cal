@@ -1,0 +1,30 @@
+{
+  "Rituximab Q6M": {
+    "name": "Rituximab Q6M",
+    "description": "Rituximab IV D1,8,15,22 Q6M",
+    "cycle_length_days": 180,
+    "number_of_cycles": 4,
+    "schedule": [
+      {
+        "day": 1,
+        "description": "Rituxan",
+        "cycles": [1, 2, 3, 4]
+      },
+      {
+        "day": 8,
+        "description": "Rituxan",
+        "cycles": [1, 2, 3, 4]
+      },
+      {
+        "day": 15,
+        "description": "Rituxan",
+        "cycles": [1, 2, 3, 4]
+      },
+      {
+        "day": 22,
+        "description": "Rituxan",
+        "cycles": [1, 2, 3, 4]
+      }
+    ]
+  }
+}

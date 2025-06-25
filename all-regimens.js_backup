@@ -980,7 +980,7 @@ const ALL_DRUG_REGIMENS = {
     "schedule": [
       {
         "day": 1,
-        "description": "Rituximab (reduced dose)",
+        "description": "Rituximab",
         "cycles": [
           1,
           2,
@@ -992,7 +992,7 @@ const ALL_DRUG_REGIMENS = {
       },
       {
         "day": 1,
-        "description": "Cyclophosphamide (reduced dose)",
+        "description": "Cyclophosphamide",
         "cycles": [
           1,
           2,
@@ -1004,7 +1004,7 @@ const ALL_DRUG_REGIMENS = {
       },
       {
         "day": 1,
-        "description": "Doxorubicin (reduced dose)",
+        "description": "Doxorubicin",
         "cycles": [
           1,
           2,
@@ -1016,7 +1016,7 @@ const ALL_DRUG_REGIMENS = {
       },
       {
         "day": 1,
-        "description": "Vincristine (reduced dose)",
+        "description": "Vincristine",
         "cycles": [
           1,
           2,
@@ -1096,7 +1096,7 @@ const ALL_DRUG_REGIMENS = {
     "schedule": [
       {
         "day": 1,
-        "description": "Cisplatin (40 mg/m\u00b2)",
+        "description": "Cisplatin",
         "cycles": [
           1,
           2,
@@ -1175,54 +1175,6 @@ const ALL_DRUG_REGIMENS = {
     ],
     "cycle_days": 7,
     "total_cycles": 7
-  },
-  "Rituximab Q6M": {
-    "name": "Rituximab Q6M",
-    "description": "Rituximab IV D1,8,15,22 Q6M",
-    "cycle_length_days": 180,
-    "number_of_cycles": 4,
-    "schedule": [
-      {
-        "day": 1,
-        "description": "Rituxan",
-        "cycles": [
-          1,
-          2,
-          3,
-          4
-        ]
-      },
-      {
-        "day": 8,
-        "description": "Rituxan",
-        "cycles": [
-          1,
-          2,
-          3,
-          4
-        ]
-      },
-      {
-        "day": 15,
-        "description": "Rituxan",
-        "cycles": [
-          1,
-          2,
-          3,
-          4
-        ]
-      },
-      {
-        "day": 22,
-        "description": "Rituxan",
-        "cycles": [
-          1,
-          2,
-          3,
-          4
-        ]
-      }
-    ]
   },
   "R-CHOP (Rituximab, Cyclophosphamide, Doxorubicin, Vincristine, Prednisone)": {
     "name": "R-CHOP Regimen",
@@ -1400,7 +1352,7 @@ const ALL_DRUG_REGIMENS = {
       },
       {
         "day": 1,
-        "description": "Carboplatin (AUC 5\u20136)",
+        "description": "Carboplatin",
         "cycles": [
           1,
           2,
@@ -1444,7 +1396,7 @@ const ALL_DRUG_REGIMENS = {
     "schedule": [
       {
         "day": 1,
-        "description": "Carboplatin (AUC 2)",
+        "description": "Carboplatin",
         "cycles": [
           1,
           2,
@@ -1588,7 +1540,7 @@ const ALL_DRUG_REGIMENS = {
     "schedule": [
       {
         "day": 1,
-        "description": "Oxaliplatin 85 mg/m\u00b2 IV over 2 hours",
+        "description": "Oxaliplatin IV over 2 hours",
         "cycles": [
           1,
           2,
@@ -1606,7 +1558,7 @@ const ALL_DRUG_REGIMENS = {
       },
       {
         "day": 1,
-        "description": "Leucovorin 400 mg/m\u00b2 IV over 2 hours (concurrent with oxaliplatin)",
+        "description": "Leucovorin IV over 2 hours (concurrent with oxaliplatin)",
         "cycles": [
           1,
           2,
@@ -1624,7 +1576,7 @@ const ALL_DRUG_REGIMENS = {
       },
       {
         "day": 1,
-        "description": "5-FU 400 mg/m\u00b2 IV bolus",
+        "description": "5-FU IV bolus",
         "cycles": [
           1,
           2,
@@ -1642,7 +1594,7 @@ const ALL_DRUG_REGIMENS = {
       },
       {
         "day": 1,
-        "description": "5-FU 2400 mg/m\u00b2 continuous IV infusion over 46 hours",
+        "description": "5-FU continuous IV infusion over 46 hours",
         "cycles": [
           1,
           2,
@@ -1660,7 +1612,7 @@ const ALL_DRUG_REGIMENS = {
       },
       {
         "day": 3,
-        "description": "Disconnect 5-FU infusion pump",
+        "description": "Pump Disconnect",
         "cycles": [
           1,
           2,
@@ -1680,99 +1632,13 @@ const ALL_DRUG_REGIMENS = {
     "cycle_days": 14,
     "total_cycles": 12
   },
-  "Dexamethasone Premedication for Docetaxel": {
-    "name": "Dexamethasone (oral) Premedication",
-    "description": "Dexamethasone 8 mg PO BID on the day before, day of, and day after docetaxel to reduce the risk of hypersensitivity reactions and fluid retention",
-    "schedule": [
-      {
-        "day": 0,
-        "description": "Dexamethasone 8 mg PO BID",
-        "cycles": [
-          1,
-          2,
-          3,
-          4,
-          5,
-          6
-        ]
-      },
-      {
-        "day": 1,
-        "description": "Dexamethasone 8 mg PO BID",
-        "cycles": [
-          1,
-          2,
-          3,
-          4,
-          5,
-          6
-        ]
-      },
-      {
-        "day": 2,
-        "description": "Dexamethasone 8 mg PO BID",
-        "cycles": [
-          1,
-          2,
-          3,
-          4,
-          5,
-          6
-        ]
-      }
-    ],
-    "notes": "Administered on Days 0\u20132 relative to docetaxel (Day 1) to prevent fluid retention and hypersensitivity reactions. PO = by mouth; BID = twice daily."
-  },
-  "Dexamethasone Premedication for Pemetrexed": {
-    "name": "Dexamethasone Premedication",
-    "description": "Dexamethasone 4 mg PO BID on the day before, day of, and day after pemetrexed to reduce skin rash",
-    "schedule": [
-      {
-        "day": 0,
-        "description": "Dexamethasone 4 mg PO BID",
-        "cycles": [
-          1,
-          2,
-          3,
-          4,
-          5,
-          6
-        ]
-      },
-      {
-        "day": 1,
-        "description": "Dexamethasone 4 mg PO BID",
-        "cycles": [
-          1,
-          2,
-          3,
-          4,
-          5,
-          6
-        ]
-      },
-      {
-        "day": 2,
-        "description": "Dexamethasone 4 mg PO BID",
-        "cycles": [
-          1,
-          2,
-          3,
-          4,
-          5,
-          6
-        ]
-      }
-    ],
-    "notes": "Administered on Days 0\u20132 relative to chemotherapy Day 1 to prevent pemetrexed-induced skin toxicity. PO = by mouth; BID = twice daily."
-  },
   "Carboplatin + Paclitaxel + Radiation Therapy (Weekly Dosing)": {
     "name": "Carboplatin + Paclitaxel + RT (Weekly)",
     "description": "Carboplatin and Paclitaxel given once weekly on Day 1 of each 7-day cycle with concurrent daily radiation therapy (M\u2013F) for 7 total cycles",
     "schedule": [
       {
         "day": 1,
-        "description": "Carboplatin (AUC 2)",
+        "description": "Carboplatin",
         "cycles": [
           1,
           2,
@@ -1881,7 +1747,7 @@ const ALL_DRUG_REGIMENS = {
       },
       {
         "day": 1,
-        "description": "Carboplatin (AUC 5\u20136)",
+        "description": "Carboplatin",
         "cycles": [
           1,
           2,
@@ -2135,7 +2001,7 @@ const ALL_DRUG_REGIMENS = {
       },
       {
         "day": 1,
-        "description": "Carboplatin (AUC 5\u20136)",
+        "description": "Carboplatin",
         "cycles": [
           1,
           3,
