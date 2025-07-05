@@ -514,20 +514,24 @@ header p {
     /* Fix day label alignment */
     .fc-col-header-cell {
         text-align: center !important;
-        padding: 8px 4px !important;
+        padding: 4px !important; /* Match day cell padding */
         vertical-align: middle !important;
+        box-sizing: border-box !important;
     }
     
     .fc-col-header-cell-cushion {
         display: inline-block !important;
         width: 100% !important;
         text-align: center !important;
+        padding: 0 !important;
+        margin: 0 !important;
     }
     
     /* Ensure table cells align with headers */
     .fc-daygrid-day {
         vertical-align: top !important;
         padding: 4px !important;
+        box-sizing: border-box !important;
     }
     
     /* Fix scrollgrid table layout */
@@ -535,11 +539,28 @@ header p {
         table-layout: fixed !important;
     }
     
+    /* Ensure consistent borders and sizing for all cells */
     .fc th,
     .fc td {
         border-width: 1px !important;
         border-style: solid !important;
         border-color: #ddd !important;
+        box-sizing: border-box !important;
+    }
+    
+    /* Chrome-specific alignment fixes */
+    .fc-col-header-cell,
+    .fc-daygrid-day {
+        position: relative !important;
+        box-sizing: border-box !important;
+    }
+    
+    /* Force exact alignment */
+    .fc-scrollgrid-section-header table,
+    .fc-scrollgrid-section-body table {
+        table-layout: fixed !important;
+        width: 100% !important;
+        border-collapse: collapse !important;
     }
     
     /* Ensure consistent column widths */
@@ -555,6 +576,16 @@ header p {
     .fc-daygrid-day,
     .fc-col-header-cell {
         width: 14.2857% !important; /* 100% / 7 days */
+        min-width: 14.2857% !important;
+        max-width: 14.2857% !important;
+    }
+    
+    /* Remove any margins that could affect alignment */
+    .fc-daygrid-day,
+    .fc-col-header-cell,
+    .fc-daygrid-day-frame,
+    .fc-col-header-cell-cushion {
+        margin: 0 !important;
     }
     
     /* Remove any transforms that might misalign headers */
@@ -597,7 +628,8 @@ header p {
     /* Reduce header font size */
     .fc-col-header-cell {
         font-size: 12px !important;
-        padding: 4px 2px !important;
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
+        line-height: 1.2 !important;
     }
     
     /* Ensure month view fits properly */
@@ -617,6 +649,22 @@ header p {
     .fc-daygrid-body,
     .fc-view-harness {
         page-break-inside: avoid !important;
+    }
+    
+    /* Chrome-specific print fixes */
+    @media print and (-webkit-min-device-pixel-ratio:0) {
+        /* Force pixel-perfect alignment in Chrome */
+        .fc-col-header-cell,
+        .fc-daygrid-day {
+            width: calc(100% / 7) !important;
+            min-width: calc(100% / 7) !important;
+            max-width: calc(100% / 7) !important;
+        }
+        
+        /* Ensure no sub-pixel rendering issues */
+        .fc-scrollgrid-sync-table {
+            border-spacing: 0 !important;
+        }
     }
 }
 
