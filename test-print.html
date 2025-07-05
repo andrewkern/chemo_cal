@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Print Test - Chemo Calendar</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .instructions {
+            background: #f0f0f0;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        .button-group {
+            margin-top: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            margin-right: 10px;
+            cursor: pointer;
+            border: none;
+            border-radius: 4px;
+            background: #4CAF50;
+            color: white;
+            font-size: 16px;
+        }
+        button:hover {
+            background: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="instructions">
+        <h1>Print Test Instructions</h1>
+        <p>To test the print layout fixes:</p>
+        <ol>
+            <li>Open the main application at <a href="frontend/index.html">frontend/index.html</a></li>
+            <li>Select a drug regimen from the dropdown</li>
+            <li>Set your desired start date</li>
+            <li>Click "Generate Schedule"</li>
+            <li>Click "Print Calendar" or use Ctrl/Cmd + P</li>
+            <li>In the print preview, check that:
+                <ul>
+                    <li>Day labels (Sun, Mon, Tue, etc.) align properly with the calendar cells below them</li>
+                    <li>All 7 days of the week are visible without being cut off</li>
+                    <li>The calendar uses landscape orientation</li>
+                    <li>Events are visible with appropriate colors</li>
+                </ul>
+            </li>
+        </ol>
+        <p><strong>The CSS fixes applied:</strong></p>
+        <ul>
+            <li>Fixed column header cell alignment with center text alignment</li>
+            <li>Set consistent padding and vertical alignment for headers</li>
+            <li>Applied fixed table layout to ensure consistent column widths</li>
+            <li>Set explicit 14.2857% width (100% / 7 days) for both headers and day cells</li>
+            <li>Removed any CSS transforms that could cause misalignment</li>
+            <li>Added proper borders to all table cells</li>
+        </ul>
+    </div>
+    
+    <div class="button-group">
+        <button onclick="window.location.href='frontend/index.html'">Open Calendar Application</button>
+        <button onclick="window.location.href='serve-local.sh'">View Serve Script</button>
+    </div>
+</body>
+</html>

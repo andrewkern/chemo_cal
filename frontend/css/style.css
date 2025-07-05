@@ -494,6 +494,60 @@ header p {
         visibility: visible !important;
         opacity: 1 !important;
     }
+    
+    /* Fix day label alignment */
+    .fc-col-header-cell {
+        text-align: center !important;
+        padding: 8px 4px !important;
+        vertical-align: middle !important;
+    }
+    
+    .fc-col-header-cell-cushion {
+        display: inline-block !important;
+        width: 100% !important;
+        text-align: center !important;
+    }
+    
+    /* Ensure table cells align with headers */
+    .fc-daygrid-day {
+        vertical-align: top !important;
+        padding: 4px !important;
+    }
+    
+    /* Fix scrollgrid table layout */
+    .fc-scrollgrid-sync-table {
+        table-layout: fixed !important;
+    }
+    
+    .fc th,
+    .fc td {
+        border-width: 1px !important;
+        border-style: solid !important;
+        border-color: #ddd !important;
+    }
+    
+    /* Ensure consistent column widths */
+    .fc-daygrid-day-frame {
+        min-height: 80px !important;
+        width: 100% !important;
+    }
+    
+    /* Fix column header width to match day cells */
+    .fc-col-header {
+        width: 100% !important;
+    }
+    
+    .fc-daygrid-day,
+    .fc-col-header-cell {
+        width: 14.2857% !important; /* 100% / 7 days */
+    }
+    
+    /* Remove any transforms that might misalign headers */
+    .fc-scrollgrid,
+    .fc-scrollgrid-section,
+    .fc-scrollgrid-section > * {
+        transform: none !important;
+    }
 }
 
 /* Edit Regimen Styles */
